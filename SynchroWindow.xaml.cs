@@ -22,22 +22,30 @@ namespace SPNP_P12
     {
         private double sum;
         private int threadCount;
+        private const int Months = 12;
+        private static Random r = new Random();
         public SynchroWindow()
         {
             InitializeComponent();
         }
-        #region 1    
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             sum = 100;
             LogtextBlock.Text = String.Empty;
-            threadCount = 12;
-            for(int i = 0; i < threadCount; i++)
+            threadCount = Months;
+            float randPercent, avgPercent = 0;
+            for (int i = 0; i < threadCount; i++)
             {
-                new Thread(AddPercent4).Start(new MonthData { Month = i + 1});
+                // new Thread(AddPercent4).Start(new MonthData { Month = i + 1});
+                randPercent = (float)Math.Round(r.NextDouble() * 20, 1);
+                avgPercent += randPercent;
+                new Thread(AddPercentHW).Start(new MonthData { Month = i + 1, Percent = randPercent });
             }
+            LogtextBlock.Text += $"Avg percent: {(avgPercent / Months):F2}\n";
+
         }
 
+        #region CW1
         private void AddPercent()
         {
             Thread.Sleep(200);
@@ -121,8 +129,44 @@ namespace SPNP_P12
         class MonthData
         {
             public int Month { get; set; }
+            public float Percent { get; set; }
         }
-
         #endregion
+
+        #region HW1
+        private object mainLocker = new(); 
+        private void AddPercentHW(object? data)
+        {
+            var months = data as MonthData;
+            Thread.Sleep(200);
+            double localSum;
+            lock (mainLocker) 
+            { 
+                localSum = sum += (sum * months!.Percent / 100); 
+            }
+            Dispatcher.Invoke(() =>
+            {
+                LogtextBlock.Text += $"{months?.Month}) --- {localSum:F2} --- (+{months?.Percent}%)\n";
+            });
+            bool isLast = false;  
+            lock (mainLocker)  
+            {
+                threadCount--;
+                Thread.Sleep(1);
+                if (threadCount == 0)  
+                {
+                    isLast = true;
+                }
+            }
+            if (isLast)
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    LogtextBlock.Text += $"--------\n\nresult = {sum:F2}";
+                });
+            }
+        }
+        #endregion
+
     }
 }
