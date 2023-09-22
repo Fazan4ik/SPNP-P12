@@ -59,7 +59,6 @@
             <TextBox x:Name="hwTextBox3" Text="1" VerticalAlignment="Center" Margin="0 8 0 0"/> 
             <Label Content="секунд(и)" Margin="0 8 0 0"/>
         </StackPanel>
-
         <StackPanel Orientation="Horizontal">
             <Button Content="Start" Margin="10 1 10 1" x:Name="BtnHwStart" Click="BtnHwStart_Click"/>
             <Button Content="Stop" Margin="10 1 10 1" x:Name="BtnHwStop" Click="BtnHwStop_Click"/>

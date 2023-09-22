@@ -38,5 +38,19 @@ namespace SPNP_P12
             new SynchroWindow().ShowDialog();
             this.Show();
         }
+
+        private void TaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new TaskWindow().ShowDialog();
+            this.Show();
+        }
+
+        private void CancellingButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new CancelWindow().ShowDialog();
+            this.Show();
+        }
     }
 }

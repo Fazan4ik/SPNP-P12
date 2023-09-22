@@ -36,16 +36,33 @@ namespace SPNP_P12
             float randPercent, avgPercent = 0;
             for (int i = 0; i < threadCount; i++)
             {
-                // new Thread(AddPercent4).Start(new MonthData { Month = i + 1});
-                randPercent = (float)Math.Round(r.NextDouble() * 20, 1);
+               new Thread(AddPercent5).Start(new MonthData { Month = i + 1});
+               /* randPercent = (float)Math.Round(r.NextDouble() * 20, 1);
                 avgPercent += randPercent;
-                new Thread(AddPercentHW).Start(new MonthData { Month = i + 1, Percent = randPercent });
+                new Thread(AddPercentHW).Start(new MonthData { Month = i + 1, Percent = randPercent });*/
             }
-            LogtextBlock.Text += $"Avg percent: {(avgPercent / Months):F2}\n";
+           // LogtextBlock.Text += $"Avg percent: {(avgPercent / Months):F2}\n";
 
         }
 
         #region CW1
+
+        private Semaphore semaphore = new Semaphore(4, 4);
+        private void AddPercent5(object? data)
+        {
+            var monthData = data as MonthData;
+            semaphore.WaitOne();
+            Thread.Sleep(1000);
+            double localSum;
+            localSum = sum = sum * 1.1;
+
+            semaphore.Release();
+            Dispatcher.Invoke(() =>
+            {
+                LogtextBlock.Text += $"{monthData?.Month} --- {localSum:F2}\n";
+            });
+        }
+
         private void AddPercent()
         {
             Thread.Sleep(200);
@@ -72,6 +89,8 @@ namespace SPNP_P12
 
 
         private object sumLocker = new();
+        private object countLocker = new();
+
 
         private void AddPercent2()
         {
