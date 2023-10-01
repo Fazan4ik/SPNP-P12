@@ -21,10 +21,34 @@ namespace SPNP_P12
     /// </summary>
     public partial class ThreadingWindow : Window
     {
+        private static Mutex? mutex;
+        private static string mutexName = "TW_MUTEX";
+
         public ThreadingWindow()
         {
+            CheckPreviousLaunch();
             InitializeComponent();
         }
+        private void CheckPreviousLaunch()
+        {
+            try { mutex = Mutex.OpenExisting(mutexName); } catch { } 
+
+            if (mutex is null)
+            {
+                mutex = new Mutex(true, mutexName);
+            }
+            else if (!mutex.WaitOne(1))
+            {
+                MessageBox.Show("Экземпляр окна уже запущен!");
+                throw new ApplicationException();
+            }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            mutex?.ReleaseMutex();
+        }
+
 
         #region 1
         private void StartButton1_Click(object sender, RoutedEventArgs e)

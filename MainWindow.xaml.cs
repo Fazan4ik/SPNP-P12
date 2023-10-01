@@ -32,7 +32,7 @@ namespace SPNP_P12
         private void ThreadingButton_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            new ThreadingWindow().ShowDialog();
+            try { new ThreadingWindow().ShowDialog(); } catch { }
             this.Show();
         }
 
