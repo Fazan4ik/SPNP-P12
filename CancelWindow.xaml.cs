@@ -13,18 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-
-/*private void StartBtnPB_Click(object sender, RoutedEventArgs e)
-{
-    Clear();
-    _cancellationTokenSource = new CancellationTokenSource();
-    await RunProgressWaitable(ProgressBar10, _cancellationTokenSource.Token);
-    await RunProgressWaitable(ProgressBar11, _cancellationTokenSource.Token, 4);
-    await RunProgressWaitable(ProgressBar12, _cancellationTokenSource.Token, 2);
-}*/
-
-
-
 namespace SPNP_P12
 {
     /// <summary>
