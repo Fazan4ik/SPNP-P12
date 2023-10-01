@@ -38,6 +38,13 @@
                     <Button x:Name="StartCalculator" Content="Start Calc" FontSize="20" Margin="5 5 5 5" Click="StartCalculator_Click"/>
                     <Button x:Name="StopCalculator" Content="Stop Calc" FontSize="20" Margin="5 5 5 5" Click="StopCalculator_Click"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="StartTaskManager" Content="StartTaskM" FontSize="20" Margin="5 5 5 5" Click="StartTaskManager_Click"/>
+                    <Button x:Name="StopTaskManager" Content="StopTtaskM" FontSize="20" Margin="5 5 5 5" Click="StopTaskManager_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="StartSystemSetting" Content="Start SysSet" FontSize="20" Margin="5 5 5 5" Click="StartSystemSetting_Click"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </StackPanel>

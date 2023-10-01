@@ -156,7 +156,6 @@ namespace SPNP_P12
         }
 
         private Process? calculatorProcess;
-
         private void StartCalculator_Click(object sender, RoutedEventArgs e)
         {
             calculatorProcess ??= Process.Start("calc");
@@ -172,5 +171,39 @@ namespace SPNP_P12
             calculatorProcess = null;
         }
 
+        private Process? taskManagerProcess;
+        private void StartTaskManager_Click(object sender, RoutedEventArgs e)
+        {
+            if (taskManagerProcess is null)
+            {
+                taskManagerProcess = new Process();
+                taskManagerProcess.StartInfo.FileName = "taskmgr.exe";
+                taskManagerProcess.StartInfo.UseShellExecute = true; 
+                try
+                {
+                    taskManagerProcess.Start();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Помилка при запуску");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Вже запущено!");
+            }
+        }
+
+        private void StopTaskManager_Click(object sender, RoutedEventArgs e)
+        {
+            taskManagerProcess?.CloseMainWindow();
+            taskManagerProcess?.Kill();
+            taskManagerProcess = null;
+        }
+
+        private void StartSystemSetting_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("control.exe");
+        }
     }
 }
