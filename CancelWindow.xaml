@@ -5,16 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPNP_P12"
         mc:Ignorable="d"
-        Title="CancelWindow" Height="550" Width="400">
-    <StackPanel Orientation="Vertical" Background="Tomato">
+        Title="CancelWindow" Height="800" Width="400" Background="Tomato">
+    <StackPanel Orientation="Vertical">
         <Label Content="Скасування задач" HorizontalAlignment="Center" FontSize="20" Margin="5 5 5 5"/>
         <StackPanel Orientation="Horizontal">
             <Button Content="Парарельно" Margin="10 5 10 5" x:Name="StartBtn1" Click="StartBtn1_Click"/>
-            <Button Content="Послідовно" Margin="10 5 10 5" x:Name="StartBtn2" Click="StartBtn2_Click"/>
             <Button Content="Stop" Margin="10 5 10 5" x:Name="StopBtn1" Click="StopBtn1_Click"/>
         </StackPanel>
-        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar1"/>
-        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar2"/>
-        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar3"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="progressBar10"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="progressBar11"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="progressBar12"/>
+
+        <Label Content="RunProgressWaitable" HorizontalAlignment="Center" FontSize="20" Margin="5 5 5 5"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Парарельно" Margin="10 5 10 5" x:Name="StartBtn2" Click="StartBtn2_Click"/>
+            <Button Content="Stop" Margin="10 5 10 5" x:Name="StopBtn2" Click="StopBtn2_Click"/>
+        </StackPanel>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="progressBar20"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="progressBar21"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="progressBar22"/>
+
+        <Label Content="RunProgressWaitable" HorizontalAlignment="Center" FontSize="20" Margin="5 5 5 5"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Парарельно" Margin="10 5 10 5" x:Name="StartBtn3" Click="StartBtn3_Click"/>
+            <Button Content="Stop" Margin="10 5 10 5" x:Name="StopBtn3" Click="StopBtn3_Click"/>
+        </StackPanel>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="progressBar30"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="progressBar31"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="progressBar32"/>
+
     </StackPanel>
 </Window>

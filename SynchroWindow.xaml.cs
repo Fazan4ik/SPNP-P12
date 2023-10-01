@@ -24,10 +24,41 @@ namespace SPNP_P12
         private int threadCount;
         private const int Months = 12;
         private static Random r = new Random();
+        private static Mutex? mutex;
+        private const String mutexName = "SPNP_SW_MUTEX";
+
         public SynchroWindow()
         {
+            WaitOtherInstance();
             InitializeComponent();
         }
+
+        private void WaitOtherInstance()
+        {
+            try { mutex = Mutex.OpenExisting(mutexName); } catch { }
+            if (mutex == null)
+            {
+                mutex = new Mutex(true, mutexName);
+            }
+            else
+            {
+                if (!mutex.WaitOne(1))
+                {
+                    if(new CountDownWindow(mutex).ShowDialog() == false)
+                    {
+                        throw new ApplicationException();
+                    }
+                    mutex.WaitOne();
+                }
+            }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            mutex?.ReleaseMutex();
+        }
+
+
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             sum = 100;
@@ -187,5 +218,6 @@ namespace SPNP_P12
         }
         #endregion
 
+        
     }
 }
