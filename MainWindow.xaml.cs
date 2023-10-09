@@ -96,5 +96,12 @@ namespace SPNP_P12
             new ChainingWindow().ShowDialog();
             this.Show();
         }
+
+        private void DllButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new DllWindow().ShowDialog();
+            this.Show();
+        }
     }
 }

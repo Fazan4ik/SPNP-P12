@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,55 +25,74 @@ namespace SPNP_P12
             InitializeComponent();
         }
 
+
+        private CancellationTokenSource cts = null!;
         private void StartBtn1_Click(object sender, RoutedEventArgs e)
         {
-            var task10 =
-            showProgress(ProgressBar1)
-                .ContinueWith(task => showProgress(ProgressBar2)
-                .ContinueWith(task => showProgress(ProgressBar3)))
-                ;
+            if (cts is null || cts.IsCancellationRequested)
+                cts = new CancellationTokenSource();
+            else
+                return;
 
-            showProgress(ProgressBar11)
-                .ContinueWith(task => showProgress(ProgressBar22)
-                .ContinueWith(task => showProgress(ProgressBar33)))
-                ;
+            var task10 =
+                ShowProgress(progressBar10, cts.Token)
+                .ContinueWith(task10 =>
+                    ShowProgress(progressBar11, cts.Token)
+                   .ContinueWith(task11 =>
+                        ShowProgress(progressBar12, cts.Token)));  
+
+            var task20 =
+                ShowProgress(progressBar20, cts.Token)  
+                .ContinueWith(task20 =>
+                    ShowProgress(progressBar21, cts.Token)
+                   .ContinueWith(task21 =>
+                        ShowProgress(progressBar22, cts.Token)));
         }
 
         private void StopBtn1_Click(object sender, RoutedEventArgs e)
         {
-
+            cts?.Cancel();
         }
 
-        private async Task showProgress(ProgressBar progressBar)
+        private async void StartBtn2_Click(object sender, RoutedEventArgs e)
+        {
+            if (cts is null || cts.IsCancellationRequested)  
+                cts = new CancellationTokenSource();
+            else
+                return;
+            var task10 = ShowProgress(progressBar10, cts.Token);
+            var task20 = ShowProgress(progressBar20, cts.Token);
+            await task10; var task11 = ShowProgress(progressBar11, cts.Token);
+            await task20; var task21 = ShowProgress(progressBar21, cts.Token);
+            await task11; var task12 = ShowProgress(progressBar12, cts.Token);
+            await task21; var task22 = ShowProgress(progressBar22, cts.Token);
+        }
+
+        private void StopBtn2_Click(object sender, RoutedEventArgs e)
+        {
+            cts?.Cancel();
+        }
+
+        private async Task ShowProgress(ProgressBar progressBar, CancellationToken token)
         {
             int delay = 100;
-            if (progressBar == ProgressBar1) delay = 300;
-            if (progressBar == ProgressBar2) delay = 200;
-            if (progressBar == ProgressBar3) delay = 100;
-            if (progressBar == ProgressBar11) delay = 100;
-            if (progressBar == ProgressBar22) delay = 200;
-            if (progressBar == ProgressBar33) delay = 300;
+            if (progressBar == progressBar10) delay = 300;
+            if (progressBar == progressBar11) delay = 200;
+            if (progressBar == progressBar12) delay = 100;
 
-
+            if (progressBar == progressBar20) delay = 100;
+            if (progressBar == progressBar21) delay = 200;
+            if (progressBar == progressBar22) delay = 300;
 
             for (int i = 0; i <= 10; i++)
             {
                 await Task.Delay(delay);
                 Dispatcher.Invoke(() => progressBar.Value = i * 10);
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
             }
-        }
-
-        private async void StartBtn2_Click(object sender, RoutedEventArgs e)
-        {
-            var task1 = showProgress(ProgressBar1);
-            var task2 = showProgress(ProgressBar2);
-            await task1; var task11 = showProgress(ProgressBar11);
-            await task2; var task22 = showProgress(ProgressBar22);
-        }
-
-        private void StopBtn2_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private async void StartBtn3_Click(object sender, RoutedEventArgs e)

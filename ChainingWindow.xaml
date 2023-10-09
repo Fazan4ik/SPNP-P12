@@ -12,17 +12,17 @@
             <Button Content="Start1" Margin="10 5 10 5" x:Name="StartBtn1" Click="StartBtn1_Click"/>
             <Button Content="Stop1" Margin="10 5 10 5" x:Name="StopBtn1" Click="StopBtn1_Click"/>
         </StackPanel>
-        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar1"/>
-        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar2"/>
-        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar3"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar10"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar11"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar12"/>
 
         <StackPanel Orientation="Horizontal">
             <Button Content="Start2" Margin="10 5 10 5" x:Name="StartBtn2" Click="StartBtn2_Click"/>
             <Button Content="Stop2" Margin="10 5 10 5" x:Name="StopBtn2" Click="StopBtn2_Click"/>
         </StackPanel>
-        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar11"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar20"/>
+        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar21"/>
         <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar22"/>
-        <ProgressBar Width="Auto" Height="30" Margin="20 5 20 5" x:Name="ProgressBar33"/>
         <StackPanel Orientation="Horizontal">
             <Button Content="Start3" Margin="10 5 10 5" x:Name="StartBtn3" Click="StartBtn3_Click"/>
             <Button Content="Stop3" Margin="10 5 10 5" x:Name="StopBtn3" Click="StopBtn3_Click"/>

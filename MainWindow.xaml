@@ -20,6 +20,8 @@
                     Content="Процеси" Margin="20 7" Click="ProcessButton_Click"/>
         <Button x:Name="ChainingButton"
                     Content="Нитки. Продовження." Margin="20 7" Click="ChainingButton_Click"/>
+        <Button x:Name="DllButton"
+                    Content="Dll button" Margin="20 7" Click="DllButton_Click"/>
     </StackPanel>
 
 </Window>

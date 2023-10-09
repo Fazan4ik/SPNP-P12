@@ -1,0 +1,19 @@
+﻿<Window x:Class="SPNP_P12.DllWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SPNP_P12"
+        mc:Ignorable="d"
+        Title="DllWindow" Height="450" Width="300" Background="LightPink">
+    <StackPanel Orientation="Vertical">
+        <Button x:Name="AlertButton" Content="Alert" Click="AlertButton_Click" Margin="10 10 10 10" VerticalAlignment="Top" FontSize="25"/>
+        <Button x:Name="ThreadButton" Content="Thread" Click="ThreadButton_Click" Margin="10 10 10 10" VerticalAlignment="Top" FontSize="25"/>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="SoundButton" Content="S1" Click="SoundButton_Click"  Margin="5 5 5 5" VerticalAlignment="Top" FontSize="25"/>
+            <Button x:Name="SoundButton2" Content="S2" Click="SoundButton2_Click"  Margin="5 5 5 5" VerticalAlignment="Top" FontSize="25"/>
+            <Button x:Name="SoundButton3" Content="S3" Click="SoundButton3_Click"  Margin="5 5 5 5" VerticalAlignment="Top" FontSize="25"/>
+            <Button x:Name="SoundButton4" Content="S4" Click="SoundButton4_Click"  Margin="5 5 5 5" VerticalAlignment="Top" FontSize="25"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
